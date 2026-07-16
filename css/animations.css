@@ -1,0 +1,136 @@
+/* ---- Global transition defaults for interactive elements ---- */
+.logo{ transition:letter-spacing .3s ease, opacity .3s ease, color .3s ease; }
+.nav-links a{ transition:color .25s; }
+.nav-links a::after{ transition:width .3s ease; }
+.socials a{ transition:color .25s, transform .25s; }
+h1.name{ transition:letter-spacing .5s ease, filter .5s ease; }
+.gallery figure{ transition:box-shadow .4s ease; }
+.gallery img{ transition:transform .6s ease, filter .6s ease; }
+.btn{ transition:background .3s, border-color .3s, transform .2s, letter-spacing .3s; }
+.info-block{ transition:border-color .3s ease, transform .3s ease; }
+.field input, .field textarea{ transition:border-color .3s; }
+.field label{ transition:all .25s cubic-bezier(.2,.7,.2,1); }
+.field-icon{ transition:stroke .3s ease; }
+.send-btn{ transition:opacity .25s, background .3s, transform .15s, box-shadow .3s; }
+.send-btn .plane-icon{ transition:transform .3s ease; }
+.form-note{ transition:opacity .3s ease; }
+.resume-card{ transition:background .4s ease; }
+.card-icon{ transition:border-color .3s ease, transform .3s ease; }
+.card-icon svg{ transition:stroke .3s ease; }
+.card-header .card-index{ transition:color .3s ease; }
+.timeline-v-item::before{ transition:border-color .3s ease, background .3s ease, transform .3s ease; }
+.timeline-v-item{ transition:background .3s ease, transform .3s ease; }
+.tag{ transition:border-color .25s, color .25s, transform .25s, background .25s; }
+.award-card{ transition:background .3s ease, transform .3s ease; }
+.award-card .award-icon{ transition:border-color .3s ease; }
+.award-card .award-icon svg{ transition:stroke .3s ease; }
+
+/* ---- PRELOADER animation ---- */
+#preloader{
+  transition:opacity .7s ease, visibility .7s ease;
+}
+#preloader.hide{opacity:0; visibility:hidden; pointer-events:none;}
+.preloader-name span{
+  display:inline-block;
+  opacity:0; transform:translateY(24px);
+  animation:letter-in .6s cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes letter-in{ to{ opacity:1; transform:translateY(0); } }
+.preloader-name span:nth-child(1){animation-delay:.05s;}
+.preloader-name span:nth-child(2){animation-delay:.11s;}
+.preloader-name span:nth-child(3){animation-delay:.17s;}
+.preloader-name span:nth-child(4){animation-delay:.23s;}
+.preloader-name span:nth-child(5){animation-delay:.29s;}
+.preloader-name span:nth-child(6){animation-delay:.35s;}
+.preloader-name span:nth-child(7){animation-delay:.41s;}
+
+/* ---- Hero intro cascade (plays once preloader clears) ---- */
+.intro-el{
+  opacity:0; transform:translateY(26px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+}
+body.page-loaded .intro-el{opacity:1; transform:translateY(0);}
+body.page-loaded .intro-el[data-delay="1"]{transition-delay:.1s;}
+body.page-loaded .intro-el[data-delay="2"]{transition-delay:.25s;}
+body.page-loaded .intro-el[data-delay="3"]{transition-delay:.4s;}
+body.page-loaded .intro-el[data-delay="4"]{transition-delay:.55s;}
+
+/* ---- Scroll reveal (JS toggles .visible via IntersectionObserver) ---- */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.visible{opacity:1; transform:translateY(0);}
+.reveal-stagger.visible > *{opacity:1; transform:translateY(0);}
+.reveal-stagger > *{
+  opacity:0; transform:translateY(20px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal-stagger.visible > *:nth-child(1){transition-delay:.05s;}
+.reveal-stagger.visible > *:nth-child(2){transition-delay:.15s;}
+.reveal-stagger.visible > *:nth-child(3){transition-delay:.25s;}
+.reveal-stagger.visible > *:nth-child(4){transition-delay:.35s;}
+
+/* ---- Hero background drift (aurora blobs) ---- */
+.hero-aurora.a1{ animation:drift1 22s ease-in-out infinite; }
+.hero-aurora.a2{ animation:drift2 26s ease-in-out infinite; }
+.hero-aurora.a3{ animation:drift3 30s ease-in-out infinite; }
+@keyframes drift1{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(60px,50px) scale(1.15);}
+}
+@keyframes drift2{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(-50px,-40px) scale(1.1);}
+}
+@keyframes drift3{
+  0%,100%{transform:translate(-50%,-50%) scale(1);}
+  50%{transform:translate(-40%,-58%) scale(1.2);}
+}
+
+/* ---- About section background drift ---- */
+.about-grid{
+  animation:about-grid-drift 34s linear infinite;
+}
+@keyframes about-grid-drift{
+  0%{transform:translate(0,0);}
+  100%{transform:translate(64px,64px);}
+}
+.about-glow{
+  animation:about-glow-drift 24s ease-in-out infinite;
+}
+@keyframes about-glow-drift{
+  0%,100%{transform:translate(-50%,0) scale(1);}
+  50%{transform:translate(-30%,10%) scale(1.2);}
+}
+
+/* ---- Contact form rotating gradient border ---- */
+.contact-form::before{
+  animation:rotate-border 5s linear infinite;
+}
+@keyframes rotate-border{ to{ transform:rotate(360deg); } }
+
+/* ---- Send button spinner ---- */
+.spinner{
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+/* ---- Invalid field shake ---- */
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-6px);}
+  40%{transform:translateX(6px);}
+  60%{transform:translateX(-4px);}
+  80%{transform:translateX(4px);}
+}
+.field.shake{animation:shake .4s ease;}
+
+/* ---- Respect reduced-motion preference ---- */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;}
+  .preloader-name span{animation:none; opacity:1; transform:none;}
+  .intro-el{opacity:1 !important; transform:none !important; transition:none !important;}
+  .about-grid, .about-glow, .hero-aurora, .contact-form::before, .spinner{animation:none !important;}
+}
